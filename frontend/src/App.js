@@ -38,7 +38,7 @@ function App() {
   const fetchUsers = async () => {
 
     const response = await fetch(
-      "http://localhost:8000/api/users/"
+      "http://13.205.211.48:8000/api/users/"
     );
 
     const data = await response.json();
@@ -63,7 +63,7 @@ function App() {
     e.preventDefault();
 
     await fetch(
-      "http://localhost:8000/api/users/",
+      "http://13.205.211.48:8000/api/users/",
       {
         method: "POST",
 
