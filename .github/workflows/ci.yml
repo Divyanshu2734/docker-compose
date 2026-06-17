@@ -65,26 +65,26 @@ jobs:
       - name: Push Backend Image
         run: |
           docker push \
-          ${{ secrets.DOCKER_USERNAME }}/django-app:${{ github.sha }}
+          ${{ secrets.DOCKER_USERNAME }}/backend:${{ github.sha }}
 
       - name: Push Frontend Image
         run: |
           docker push \
-          ${{ secrets.DOCKER_USERNAME }}/react-app:${{ github.sha }}
+          ${{ secrets.DOCKER_USERNAME }}/frontend:${{ github.sha }}
 
-      - name: Deploy To EC2
-        uses: appleboy/ssh-action@v1.0.3
-        with:
-          host: ${{ secrets.EC2_HOST }}
-          username: ${{ secrets.EC2_USER }}
-          key: ${{ secrets.EC2_SSH_KEY }}
-          script: |
-            docker pull ${{ secrets.DOCKER_USERNAME }}/django-app:${{ github.sha }}
+      # - name: Deploy To EC2
+      #   uses: appleboy/ssh-action@v1.0.3
+      #   with:
+      #     host: ${{ secrets.EC2_HOST }}
+      #     username: ${{ secrets.EC2_USER }}
+      #     key: ${{ secrets.EC2_SSH_KEY }}
+      #     script: |
+      #       docker pull ${{ secrets.DOCKER_USERNAME }}/django-app:${{ github.sha }}
 
-            docker pull ${{ secrets.DOCKER_USERNAME }}/react-app:${{ github.sha }}
+      #       docker pull ${{ secrets.DOCKER_USERNAME }}/react-app:${{ github.sha }}
 
-            cd /home/ubuntu/app
+      #       cd /home/ubuntu/app
 
-            docker compose down
+      #       docker compose down
 
-            docker compose up -d
+      #       docker compose up -d
